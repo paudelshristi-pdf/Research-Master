@@ -1,6 +1,10 @@
 import json
 from pathlib import Path
-
+from datetime import datetime
+    
+def save_research(research, file_path):
+    with file_path.open("w", encoding="utf-8") as file:
+        json.dump(research, file, indent=4)
 
 question = input("What would you like to research? ").strip()
 
@@ -50,9 +54,12 @@ else:
         "sources": sources
     }
 
-    file_path = Path(__file__).parent / "research.json"
+    reports_folder = Path(__file__).parent / "reports"
+    reports_folder.mkdir(exist_ok=True)
 
-    with file_path.open("w", encoding="utf-8") as file:
-        json.dump(research, file, indent=4)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+    file_path = reports_folder / f"research_{timestamp}.json"
+
+    save_research(research, file_path)
 
     print(f"\nResearch saved to: {file_path.resolve()}")
