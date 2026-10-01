@@ -1,4 +1,4 @@
-# Research-Master# Research Master
+# Research-Master
 
 An AI research assistant built step by step while learning Python,
 programming logic, and problem solving.
